@@ -1,3 +1,4 @@
-#JS Tic Tac Toe
+#JS Classic Mini Games
 
-An implementation of Tic Tac Toe in AngularJS.
+As part of my learning AngularJS, this may be a webpage to house multiple implementations of simple "classic" paper/pencil or board games. Currently there is only Tic Tac Toe.
+
