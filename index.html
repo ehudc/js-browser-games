@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html ng-app>
+<head>
+    <title>Mini games in your browser!</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"></script>
+    <script type="text/javascript" src="TicTacToe.js"></script>
+    <link rel="stylesheet" type="text/css" href="TicTacToe.css"></link>
+</head>
+
+<body>
+
+<div id="ttt" ng-controller="TicTacToe"> 
+    <h2>Tic Tac Toe</h2>
+    <p id="status">{{turn}}</p>
+    <table>
+        <tr ng-repeat="row in board.rows">
+            <!-- click to select[row][col] by index value -->
+            <td ng-repeat="col in row track by $index"
+                ng-click="board.select($parent.$index, $index)"
+                class="column-{{col}}">
+            </td>
+        </tr>
+    </table>
+    <p id="record">{{record}}</p>
+</div>
+
+
+<div class="SecondGame" ng-controller="Second"> 
+    {{temp}}
+</div>
+
+</body>
+</html>

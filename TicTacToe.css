@@ -1,0 +1,32 @@
+#ttt {
+    text-align: center;
+    height: 400px;
+    padding-bottom: 20px;
+}
+
+#ttt table {
+    border-collapse: collapse;
+    margin: 0px auto;
+    width: 250px;
+    height: 250px;
+}
+
+#ttt td {
+    border: 2px solid black;
+    width: 80px;
+    height: 80px;
+}
+
+/* Placeholder colors for X and O images */
+.column-X {
+    background: url('icon_x.png');
+}
+
+.column-O {
+    background: url('icon_o.png');
+}
+
+.column-X, .column-O {
+    background-size: 80px;
+    background-repeat: no-repeat;
+}
