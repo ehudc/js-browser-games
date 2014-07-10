@@ -43,7 +43,7 @@ function TicTacToe($scope) {
         // check score for win or draw
         this.select = function(r,c) {
             if (!$scope.gameover && typeof(this.rows[r][c]) == 'string') {
-                alert("Choose a different box!");
+                $scope.turn = $scope.players[player].icon + ", you must choose an open box!";
             }
             else if (!$scope.gameover) {
                 $scope.players[player].score += this.rows[r][c];
@@ -52,16 +52,14 @@ function TicTacToe($scope) {
                 if (this.checkScore(player)) {
                     player == 0 ? x_win++ : o_win++;
                     $scope.record = "X wins: " + x_win + " -- O wins: " + o_win;
-                    alert($scope.players[player].icon + " wins!");
-                    this.reset();
+                    this.reset($scope.players[player].icon);
                 }
                 else {
                     player = 1 - player;
                     moves += 1;
 
                     if (moves == 9) {
-                        alert("Tie game");
-                        this.reset();
+                        this.reset(0);
                     }
                     else {
                         $scope.turn = $scope.players[player].icon + "'s turn";
@@ -70,7 +68,14 @@ function TicTacToe($scope) {
             }
         }
 
-        this.reset = function() {
+        this.reset = function(winner) {
+            if (winner == 0) {
+                $scope.winner = "Tie Game";
+            }
+            else {
+                $scope.winner = winner + " wins!";
+            }
+            $scope.turn = "Game Over!"
             $scope.gameover = true;
             $scope.restart = true;
         }
