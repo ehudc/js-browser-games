@@ -17,7 +17,10 @@
     height: 80px;
 }
 
-/* Placeholder colors for X and O images */
+td[class^='column']:hover {
+    cursor: pointer;
+}
+
 .column-X {
     background: url('icon_x.png');
 }
