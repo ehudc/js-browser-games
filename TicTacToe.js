@@ -1,6 +1,5 @@
 /* 
 !TODO allow for first player choice?
-!TODO allow for board freeze or timeout before new game
 */
 
 function TicTacToe($scope) {
@@ -18,6 +17,8 @@ function TicTacToe($scope) {
             }
         ];
         $scope.turn = "X goes first";
+        $scope.restart = false;
+        $scope.gameover = false;
     })();
 
     var x_win = 0,
@@ -41,32 +42,37 @@ function TicTacToe($scope) {
         // if free box, add value to player total
         // check score for win or draw
         this.select = function(r,c) {
-            if (typeof (this.rows[r][c]) == 'string') {
+            if (!$scope.gameover && typeof(this.rows[r][c]) == 'string') {
                 alert("Choose a different box!");
             }
-            else {
+            else if (!$scope.gameover) {
                 $scope.players[player].score += this.rows[r][c];
+                this.rows[r][c] = $scope.players[player].icon;
                 
                 if (this.checkScore(player)) {
-                    alert($scope.players[player].icon + " wins! Resetting the board...");
                     player == 0 ? x_win++ : o_win++;
                     $scope.record = "X wins: " + x_win + " -- O wins: " + o_win;
-                    $scope.init();
+                    alert($scope.players[player].icon + " wins!");
+                    this.reset();
                 }
                 else {
-                    this.rows[r][c] = $scope.players[player].icon;
                     player = 1 - player;
                     moves += 1;
 
                     if (moves == 9) {
-                        alert("Tie game, resetting the board...");
-                        $scope.init();
+                        alert("Tie game");
+                        this.reset();
                     }
                     else {
                         $scope.turn = $scope.players[player].icon + "'s turn";
                     }
                 }
             }
+        }
+
+        this.reset = function() {
+            $scope.gameover = true;
+            $scope.restart = true;
         }
 
         this.checkScore = function(player) {
