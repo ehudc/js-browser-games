@@ -50,35 +50,35 @@ function TicTacToe($scope) {
                 this.rows[r][c] = $scope.players[player].icon;
                 
                 if (this.checkScore(player)) {
-                    player == 0 ? x_win++ : o_win++;
+                    player === 0 ? x_win++ : o_win++;
                     $scope.record = "X wins: " + x_win + " -- O wins: " + o_win;
                     this.reset($scope.players[player].icon);
                 }
                 else {
-                    player = 1 - player;
+                    player = 1 - player; // switch player
                     moves += 1;
 
                     if (moves == 9) {
-                        this.reset(0);
+                        this.reset(false);
                     }
                     else {
                         $scope.turn = $scope.players[player].icon + "'s turn";
                     }
                 }
             }
-        }
+        };
 
         this.reset = function(winner) {
-            if (winner == 0) {
+            if (!winner) {
                 $scope.winner = "Tie Game";
             }
             else {
                 $scope.winner = winner + " wins!";
             }
-            $scope.turn = "Game Over!"
+            $scope.turn = "Game Over!";
             $scope.gameover = true;
             $scope.restart = true;
-        }
+        };
 
         this.checkScore = function(player) {
             var win = [448, 56, 7, 292, 146, 73, 273, 84]; // binary-decimal values
@@ -89,11 +89,11 @@ function TicTacToe($scope) {
                 }
             }
             return false;
-        }
+        };
     }
 
 }
 
 function Second($scope) {
-    $scope.temp = "placeholder for a second game"
+    $scope.temp = "placeholder for a second game";
 }
